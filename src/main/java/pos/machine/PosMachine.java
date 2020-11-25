@@ -12,7 +12,7 @@ public class PosMachine {
         List<String> shortlistedBarcodes = barcodes.stream().distinct().collect(Collectors.toList());
 
         for (String shortlistedBarcode : shortlistedBarcodes) {
-            ProductDetails productDetails = getData(shortlistedBarcode, itemInfo, itemList);
+            ProductDetails productDetails = getProductData(shortlistedBarcode, itemInfo, itemList);
             totalPrice = totalPrice + productDetails.getSubtotal();
             receipt += appendProductDetails(productDetails);
         }
@@ -23,7 +23,7 @@ public class PosMachine {
         return receipt;
     }
 
-    private ProductDetails getData(String barcodeList, List<ItemInfo> itemInfo, List<String> itemList) {
+    private ProductDetails getProductData(String barcodeList, List<ItemInfo> itemInfo, List<String> itemList) {
         int count = 0;
         for (String barcode : itemList) {
             if (barcode.equals(barcodeList)) {
